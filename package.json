@@ -1,0 +1,39 @@
+{
+  "name": "smartchat",
+  "version": "1.0.0",
+  "description": "Command Line Interface for OpenAi ChatGPT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangqiangzgz/smartChat.git"
+  },
+  "keywords": [
+    "openai",
+    "chatgpt",
+    "gpt3",
+    "gpt4",
+    "ml",
+    "ai"
+  ],
+  "author": "zhangqiangzgz@hotmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhangqiangzgz/smartChat/issues"
+  },
+  "homepage": "https://github.com/zhangqiangzgz/smartChat#readme",
+  "dependencies": {
+    "@inquirer/prompts": "^1.2.3",
+    "@types/node": "^20.2.5",
+    "cac": "^6.7.14",
+    "cli-markdown": "^3.0.3",
+    "kleur": "^4.1.5",
+    "read-pkg-up": "^9.1.0",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "tsup": "^6.7.0"
+  }
+}
