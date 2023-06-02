@@ -4,8 +4,11 @@
   "description": "Command Line Interface for OpenAi ChatGPT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsup --watch",
+    "build": "tsup"
   },
+  "bin": "./bin/index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhangqiangzgz/smartChat.git"
