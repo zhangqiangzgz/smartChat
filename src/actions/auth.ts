@@ -30,6 +30,7 @@ export default async function (offical: boolean) {
       } else {
         conf.openaiAccessToken = answer
       }
+      conf.offical = offical
       writeFileSync(config.authPath, ini.stringify(conf))
     }
 
