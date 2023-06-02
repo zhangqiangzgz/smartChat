@@ -2,6 +2,8 @@ import { cac } from 'cac'
 import { fileURLToPath } from 'url'
 import path from 'path'
 import { readPackageUpSync } from 'read-pkg-up'
+import auth from './actions/auth'
+import cancelAuth from './actions/cancelAuth'
 
 async function main () {
   const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -14,15 +16,16 @@ async function main () {
    .command('auth', 'Get a openai api key or access token')
    .option('--offical', 'Choose a ChatGPTAPI')
    .option('--no-offical', 'Choose a ChatGPTUnofficalAPI')
-   .action((command, options)=> {
-    console.log(command)
+   .action(async (options)=> {
     console.log(options)
+    await auth(options.offical)
   })
 
   cli
     .command('cancelAuth', 'remove openai api key or access token')
-    .action(() => {
-    console.log(`cancel`)
+    .action(async () => {
+      console.log(`cancel`)
+      await cancelAuth()
    })
 
   cli
