@@ -35,6 +35,7 @@
     "cli-markdown": "^3.0.3",
     "ini": "^4.1.1",
     "kleur": "^4.1.5",
+    "ora": "^6.3.1",
     "read-pkg-up": "^9.1.0",
     "typescript": "^5.0.4"
   },
