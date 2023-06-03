@@ -3,7 +3,6 @@ import { existsSync, unlinkSync } from 'fs'
 import config from '../config'
 import stdout from '../utils/stdout'
 
-
 export default async function () {
   try {
     if (existsSync(config.authPath)) {

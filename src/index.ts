@@ -4,6 +4,7 @@ import path from 'path'
 import { readPackageUpSync } from 'read-pkg-up'
 import auth from './actions/auth'
 import cancelAuth from './actions/cancelAuth'
+import chat from './actions/chat'
 
 async function main () {
   const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -30,8 +31,8 @@ async function main () {
 
   cli
     .command('<prompt>', 'Ask ChatGPT a question')
-    .action((prompt) => {
-      console.log(`prompt: ${prompt}`)
+    .action(async (prompt) => {
+      await chat(prompt)
     })
 
   cli.help()
@@ -48,6 +49,6 @@ async function main () {
 
 main().catch((error) => {
   console.error(error)
-  // 异常退出
+  // abnormal exit
   process.exit(1)
 })
