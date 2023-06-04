@@ -39,6 +39,7 @@
     "conf": "^11.0.1",
     "ini": "^4.1.1",
     "kleur": "^4.1.5",
+    "log-symbols": "^5.1.0",
     "ora": "^6.3.1",
     "read-pkg-up": "^9.1.0",
     "typescript": "^5.0.4"
@@ -50,6 +51,8 @@
     "tsup": "^6.7.0"
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
