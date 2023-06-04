@@ -4,10 +4,11 @@ import { input } from '@inquirer/prompts'
 import { ChatGPTAPI, ChatGPTUnofficialProxyAPI } from 'chatgpt'
 import ora from 'ora'
 import cliMarkdown from 'cli-markdown'
-import logUpdate from 'log-update'
+import Conf from 'conf'
+import crypto from 'node:crypto'
 import config from '../config'
 import stdout from '../utils/stdout'
-import type { FetchFn, ChatMessage, ChatGPTAPIOptions } from 'chatgpt'
+import type { FetchFn, ChatMessage } from 'chatgpt'
 
 type ChatGPTUnofficialProxyAPIOptions = {
   accessToken: string
@@ -18,7 +19,22 @@ type ChatGPTUnofficialProxyAPIOptions = {
   model: string // default value text-davinci-002-render-sha
 }
 
-export default async function (prompt: string) {
+type ChatOptions = {
+  model: string
+  continue: boolean
+  store: boolean
+  proxy: string
+  chat: boolean
+}
+
+type ConversationType = {
+  [key: string] : unknown
+  lastMessgeId?: string
+}
+
+const hash = (value: string):string => crypto.createHash('sha256').update(Buffer.from(value)).digest('hex')
+
+export default async function (prompt: string, options: ChatOptions) {
 
   try {
     if (!existsSync(config.authPath)) {
@@ -31,19 +47,55 @@ export default async function (prompt: string) {
     }
 
     // https://github.com/transitive-bullshit/chatgpt-api/blob/main/docs/interfaces/ChatMessage.md
-    let result: ChatMessage
-    let conversationId: string | undefined
+    let message: ChatMessage
+    let conversationId: string | undefined = undefined
     let parentMessageId: string | undefined = undefined
     let api: ChatGPTAPI | ChatGPTUnofficialProxyAPI
+
+    const cache = new Conf({ 
+      projectName: 'smartchat'
+    })
+
+    const conversationKey = hash(conf.offical ? conf.openaiApiKey : conf.openaiAccessToken)
+    let conversation: ConversationType  = {}
+
+    if (options.continue && options.store) {
+      conversation = cache.get(conversationKey, {}) || {}
+    }
+
+    if (conversation.lastMessgeId) {
+      const lastMessage: ChatMessage = conversation[conversation.lastMessgeId] as ChatMessage
+      if (lastMessage ) {
+        conversationId = lastMessage.conversationId
+        parentMessageId = lastMessage.id
+      }
+    }
 
     if (conf.offical) {
       api = new ChatGPTAPI({
         apiKey: conf.openaiApiKey,
-        debug: false
+        debug: false,
+        completionParams: {
+          model: options.model
+        },
+        getMessageById: async (id): Promise<any> => {
+          if (options.store) {
+            return conversation[id] as ChatMessage
+          } else {
+            return null
+          }
+        },
+        upsertMessage: async (message) => {
+          if (options.store) {
+            conversation[message.id] = message
+            conversation.lastMessgeId = message.id
+            cache.set(conversationKey, conversation)
+          }
+        }
       })
     } else {
       api = new ChatGPTUnofficialProxyAPI({
-        apiReverseProxyUrl: 'https://ai.fakeopen.com/api/conversation',
+        apiReverseProxyUrl: options.proxy,
         accessToken: conf.openaiAccessToken,
         debug: false
       })
@@ -69,11 +121,11 @@ export default async function (prompt: string) {
         text: stdout.blue('Awaiting reply from chatgpt...'),
       })
       spinner.start()
-      result =  await api.sendMessage(prompt, {
+      message =  await api.sendMessage(prompt, {
         // only relevant for ChatGPTUnofficialProxyAPI (optional for ChatGPTAPI)
-        conversationId: conversationId,
+        conversationId,
         // relevant for both ChatGPTAPI and ChatGPTUnofficialProxyAPI
-        parentMessageId: parentMessageId,
+        parentMessageId,
         // onProgress: (partialResponse) => {
         //   if (partialResponse.text) {
         //     if (lastConversation !== partialResponse.text) {
@@ -83,16 +135,22 @@ export default async function (prompt: string) {
         //   }
         // }
       })
-      parentMessageId = result.id
-      conversationId = result.conversationId
+
+      if (options.store) {
+        conversation.lastMessgeId = message.id
+        conversation[message.id] = message
+        cache.set(conversationKey, conversation)
+      }
       spinner.stop()
-      console.log(cliMarkdown(result.text))
+      console.log(cliMarkdown(message.text))
       
-      await nextPrompt()
+      if (options.chat) {
+        await nextPrompt()
+      }
     }
 
     console.log(`${stdout.blue('prompt')}: ${prompt}`)
-    await inConversation()
+    // await inConversation()
 
   } catch (error) {
     console.error(error)
