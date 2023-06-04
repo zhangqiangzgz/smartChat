@@ -31,12 +31,27 @@ async function main () {
 
   cli
     .command('<prompt>', 'Ask ChatGPT a question')
-    .action(async (prompt) => {
-      await chat(prompt)
+    .option('-c, --continue', 'Continue last conversation', {
+      default: false
+    })
+    .option('-s, --store', 'Enables the local message cache', {
+      default: true
+    })
+    .option('-p, --proxy <apiReverseProxyUrl>', 'Provide a reverse proxy for ChatGPTUnofficalAPI', {
+      default: 'https://ai.fakeopen.com/api/conversation'
+    })
+    .option('-m, --model <model>', 'Model for ChatGPTAPI', {
+      default: 'gpt-3.5-turbo'
+    })
+    .option('--chat', 'Continuous dialogue mode', {
+      default: false
+    })
+    .action(async (prompt, options) => {
+      await chat(prompt, options)
     })
 
   cli.help()
-  cli.version(`${packageName}@${version}`)
+  cli.version(version)
   
   try {
     cli.parse()
