@@ -149,8 +149,13 @@ export default async function (prompt: string, options: ChatOptions) {
       }
     }
 
+    if (options.chat) {
+      stdout.coolString('++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+      stdout.coolString('You are chatting with chatgpt, you can quit with "exit".')
+      stdout.coolString('++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+    }
     console.log(`${stdout.blue('prompt')}: ${prompt}`)
-    // await inConversation()
+    await inConversation()
 
   } catch (error) {
     console.error(error)

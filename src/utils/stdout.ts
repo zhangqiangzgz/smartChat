@@ -1,8 +1,13 @@
 import kleur from "kleur"
 import ls from 'log-symbols'
+import gradient  from 'gradient-string'
 
 const log = (message: string): unknown => {
   return console.log(message)
+}
+
+const coolString = (message: string): unknown => {
+  return console.log(gradient('cyan', 'pink')(message))
 }
 
 const error = (message: string): unknown => {
@@ -38,6 +43,7 @@ const red = (message: string): string => {
 
 export default {
   log,
+  coolString,
   error,
   info,
   warn,
