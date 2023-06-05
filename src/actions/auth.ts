@@ -4,13 +4,18 @@ import { existsSync, writeFileSync, readFileSync } from 'fs'
 import ini from 'ini'
 import stdout from '../utils/stdout'
 
-export default async function (offical: boolean) {
+type AuthOptions = {
+  offical: boolean
+}
+
+export default async function (options: AuthOptions) {
+  const { offical } = options
   try {
     // No duplicate login required
     if (existsSync(config.authPath)) {
       const conf = ini.parse(readFileSync(config.authPath, 'utf-8'))
       if (conf.openaiApiKey || conf.openaiAccessToken) {
-        console.log(`You are authorized to use chatgpt, please try the command smartchat <prompt> to start your chat`)
+        stdout.info(`You are authorized to use chatgpt, please try the command smartchat <prompt> to start your chat`)
         process.exit(0)
       }
     }
@@ -46,7 +51,7 @@ export default async function (offical: boolean) {
     
     process.exit(0)
   } catch (error) {
-    console.log(`error: ${error}`)
+    stdout.error(`${error}`)
     process.exit(1)
   }
 }

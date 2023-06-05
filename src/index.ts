@@ -5,6 +5,7 @@ import { readPackageUpSync } from 'read-pkg-up'
 import auth from './actions/auth'
 import cancelAuth from './actions/cancelAuth'
 import chat from './actions/chat'
+import stdout from './utils/stdout'
 
 async function main () {
   const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -18,7 +19,7 @@ async function main () {
    .option('--offical', 'Choose a ChatGPTAPI')
    .option('--no-offical', 'Choose a ChatGPTUnofficalAPI')
    .action(async (options)=> {
-    await auth(options.offical)
+    await auth(options)
   })
 
   cli
@@ -54,7 +55,7 @@ async function main () {
   try {
     cli.parse()
   } catch (error: any) {
-    console.error(`error: ${error.message}\n`)
+    stdout.error(`${error.message}\n`)
     cli.outputHelp()
     process.exit(1)
   }

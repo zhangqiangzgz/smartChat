@@ -158,7 +158,7 @@ export default async function (prompt: string, options: ChatOptions) {
     await inConversation()
 
   } catch (error) {
-    console.error(error)
+    stdout.error(error as string)
     process.exit(1)
   }
 }
