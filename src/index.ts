@@ -1,6 +1,7 @@
 import { cac } from 'cac'
 import { fileURLToPath } from 'url'
 import path from 'path'
+import Conf from 'conf'
 import { readPackageUpSync } from 'read-pkg-up'
 import auth from './actions/auth'
 import cancelAuth from './actions/cancelAuth'
@@ -13,6 +14,10 @@ async function main () {
   const packageName = pkg && pkg.packageJson.name || 'smartchat'
   const version = pkg && pkg.packageJson.version || '1.0.0'
 
+  const cache = new Conf({ 
+    projectName: 'smartchat'
+  })
+
   const cli = cac(packageName)
   cli
    .command('auth', 'Set a openai api key or access token')
@@ -23,7 +28,7 @@ async function main () {
   })
 
   cli
-    .command('deauth', 'remove openai api key or access token')
+    .command('deauth', 'Remove openai api key or access token')
     .action(async () => {
       await cancelAuth()
    })
@@ -46,7 +51,20 @@ async function main () {
       default: 'gpt-3.5-turbo'
     })
     .action(async (prompt, options) => {
-      await chat(prompt, options)
+      await chat(prompt, options, cache)
+    })
+
+  cli
+    .command('rm-cache', 'Clear the local message cache')
+    .action(() => {
+      cache.clear()
+      stdout.success(`Cache cleared`)
+    })
+
+  cli
+    .command('ls-cache', 'Output the local message cache file path')
+    .action(() => {
+      stdout.info(cache.path)
     })
 
   cli.help()

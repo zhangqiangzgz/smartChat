@@ -4,8 +4,8 @@ import { input } from '@inquirer/prompts'
 import { ChatGPTAPI, ChatGPTUnofficialProxyAPI } from 'chatgpt'
 import ora from 'ora'
 import cliMarkdown from 'cli-markdown'
-import Conf from 'conf'
 import crypto from 'node:crypto'
+import Conf from 'conf'
 import config from '../config'
 import stdout from '../utils/stdout'
 import type { FetchFn, ChatMessage } from 'chatgpt'
@@ -34,7 +34,7 @@ type ConversationType = {
 
 const hash = (value: string):string => crypto.createHash('sha256').update(Buffer.from(value)).digest('hex')
 
-export default async function (prompt: string, options: ChatOptions) {
+export default async function (prompt: string, options: ChatOptions, cache: typeof Conf) {
 
   try {
     if (!existsSync(config.authPath)) {
@@ -51,10 +51,6 @@ export default async function (prompt: string, options: ChatOptions) {
     let conversationId: string | undefined = undefined
     let parentMessageId: string | undefined = undefined
     let api: ChatGPTAPI | ChatGPTUnofficialProxyAPI
-
-    const cache = new Conf({ 
-      projectName: 'smartchat'
-    })
 
     const conversationKey = hash(conf.offical ? conf.openaiApiKey : conf.openaiAccessToken)
     let conversation: ConversationType  = {}
