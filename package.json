@@ -25,6 +25,7 @@
     "ml",
     "ai"
   ],
+  "files": ["bin", "build"],
   "author": "zhangqiangzgz@hotmail.com",
   "license": "ISC",
   "bugs": {
