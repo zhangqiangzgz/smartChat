@@ -195,3 +195,10 @@ Access tokens last for days.
 Because of the way Terminals are built, it is not possible to update a text outside the viewport of the terminal. So for the time being, it is not possible to achieve real-time typing output in the terminal.
 
 We strongly recommend the [official ChatGPT API](#about-the-official-chatgpt-api-and-the-unofficial-proxy-api) since it use the officially supported API from OpenAI. The [unofficial proxy API](#about-the-official-chatgpt-api-and-the-unofficial-proxy-api) may be removed in a future release.
+
+## Author
+
+**smartchat** © [zhangqiangzgz](https://github.com/zhangqiangzgz), Released under the [MIT](./LICENSE) License.
+Authored and maintained by zhangqiangzgz.
+
+> GitHub [@zhangqiangzgz](https://github.com/zhangqiangzgz)
