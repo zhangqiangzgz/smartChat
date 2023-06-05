@@ -1,10 +1,16 @@
 <div align="center">
 <h1>smartchat</h1>
 Interact with ChatGPT from the command-line.
+
+
 </div
 
 [![NPM](https://img.shields.io/npm/v/smartcaht.svg)](https://www.npmjs.com/package/smartcaht) [![Build Status](https://github.com/zhangqiangzgz/smartchat/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/zhangqiangzgz/smartchat/actions/workflows/npm-publish.yml) [![MIT License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/zhangqiangzgz/smartchat/blob/main/license)
 
+ ChatGPT CLI is an npm package that allows you to interact with ChatGPT, a powerful language model developed by OpenAI,
+ directly from the command line. With this package, you can have conversational interactions with the model, generating
+ responses to your queries and engaging in a chat-like experience.
+ 
 ## Features
 - [Chat](#use-the-official-chatgpt-model) with [ChatGPT]() from the command-line
 - Support both the [official ChatGPT API](#about-the-official-chatgpt-api-and-the-unofficial-proxy-api) and the [unofficial proxy API](#about-the-official-chatgpt-api-and-the-unofficial-proxy-api) of [ChatGPT API](https://github.com/transitive-bullshit/chatgpt-api)
@@ -189,12 +195,17 @@ Alternatively, you can manually get an `accessToken` by logging in to the ChatGP
 
 Access tokens last for days.
 
-**Note**: using a reverse proxy will expose your access token to a third-party. There shouldn't be any adverse effects possible from this, but please consider the risks before using this method.
+## Contributing
+
+ Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/zhangqiangzgz).
+ When contributing, please ensure to follow the existing coding style and guidelines.
 
 ## Note 
 Because of the way Terminals are built, it is not possible to update a text outside the viewport of the terminal. So for the time being, it is not possible to achieve real-time typing output in the terminal.
 
 We strongly recommend the [official ChatGPT API](#about-the-official-chatgpt-api-and-the-unofficial-proxy-api) since it use the officially supported API from OpenAI. The [unofficial proxy API](#about-the-official-chatgpt-api-and-the-unofficial-proxy-api) may be removed in a future release.
+
+Using a reverse proxy will expose your access token to a third-party. There shouldn't be any adverse effects possible from this, but please consider the risks before using this method.
 
 ## Author
 
