@@ -16,7 +16,7 @@ async function main () {
   const cli = cac(packageName)
   cli
    .command('auth', 'Set a openai api key or access token')
-   .option('--offical', 'Choose the official ChatGPT API ')
+   .option('--offical', 'Choose the official ChatGPT API')
    .option('--no-offical', 'Choose the unofficial proxy API')
    .action(async (options)=> {
     await auth(options)
@@ -42,7 +42,7 @@ async function main () {
     .option('-p, --proxy <proxy>', 'Provide a reverse proxy for unofficial proxy API', {
       default: 'https://ai.fakeopen.com/api/conversation'
     })
-    .option('-m, --model <model>', 'Model for ChatGPTAPI', {
+    .option('-m, --model <model>', 'Model for the official ChatGPT API', {
       default: 'gpt-3.5-turbo'
     })
     .action(async (prompt, options) => {
