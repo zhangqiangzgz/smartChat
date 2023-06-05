@@ -18,14 +18,12 @@ async function main () {
    .option('--offical', 'Choose a ChatGPTAPI')
    .option('--no-offical', 'Choose a ChatGPTUnofficalAPI')
    .action(async (options)=> {
-    console.log(options)
     await auth(options.offical)
   })
 
   cli
-    .command('cancelAuth', 'remove openai api key or access token')
+    .command('deauth', 'remove openai api key or access token')
     .action(async () => {
-      console.log(`cancel`)
       await cancelAuth()
    })
 
