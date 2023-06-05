@@ -4,8 +4,8 @@
   "description": "Command Line Interface for OpenAi ChatGPT",
   "main": "index.js",
   "scripts": {
-    "dev": "tsup --watch",
-    "build": "tsup",
+    "dev": "tsup --watch --env.NODE_ENV development",
+    "build": "tsup --env.NODE_ENV production",
     "prepare": "husky install && npm run prepare:hooks",
     "prepare:hooks": "npx husky set .husky/commit-msg \"npx commitlint --edit $1\"",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
