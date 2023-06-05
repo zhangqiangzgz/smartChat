@@ -111,21 +111,25 @@ Usage:
   $ smartchat <prompt>
 
 Commands:
-  auth        Set a openai api key or access token
-  deauth      remove openai api key or access token
-  <prompt>    Ask ChatGPT a question
+  auth      Set a openai api key or access token
+  deauth    Remove openai api key or access token
+  <prompt>  Ask ChatGPT a question
+  rm-cache  Clear the local message cache
+  ls-cache  Output the local message cache file path
 
 For more info, run any command with the `--help` flag:
   $ smartchat auth --help
   $ smartchat deauth --help
   $ smartchat --help
+  $ smartchat rm-cache --help
+  $ smartchat ls-cache --help
 
 Options:
   -c, --continue       Continue last conversation (default: false)
   -s, --store          Enables the local message cache (default: true)
   --chat               Continuous dialogue mode (default: false)
-  -p, --proxy <proxy>  Provide a reverse proxy for ChatGPTUnofficalAPI (default: https://ai.fakeopen.com/api/conversation)
-  -m, --model <model>  Model for ChatGPTAPI (default: gpt-3.5-turbo)
+  -p, --proxy <proxy>  Provide a reverse proxy for unofficial proxy API (default: https://ai.fakeopen.com/api/conversation)
+  -m, --model <model>  Model for the official ChatGPT API (default: gpt-3.5-turbo)
   -h, --help           Display this message
   -v, --version        Display version number
 ```
