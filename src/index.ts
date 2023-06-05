@@ -4,7 +4,7 @@ import path from 'path'
 import Conf from 'conf'
 import { readPackageUpSync } from 'read-pkg-up'
 import auth from './actions/auth'
-import cancelAuth from './actions/cancelAuth'
+import deauth from './actions/deauth'
 import chat from './actions/chat'
 import stdout from './utils/stdout'
 
@@ -30,7 +30,7 @@ async function main () {
   cli
     .command('deauth', 'Remove openai api key or access token')
     .action(async () => {
-      await cancelAuth()
+      await deauth()
    })
 
   cli
@@ -80,7 +80,7 @@ async function main () {
 }
 
 main().catch((error) => {
-  console.error(error)
+  stdout.error(error)
   // abnormal exit
   process.exit(1)
 })
