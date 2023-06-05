@@ -3,7 +3,7 @@
 Interact with ChatGPT from the command-line.
 </div
 
-[![NPM](https://img.shields.io/npm/v/chatgpt.svg)](https://www.npmjs.com/package/chatgpt) [![Build Status](https://github.com/transitive-bullshit/chatgpt-api/actions/workflows/test.yml/badge.svg)](https://github.com/transitive-bullshit/chatgpt-api/actions/workflows/test.yml) [![MIT License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/transitive-bullshit/chatgpt-api/blob/main/license)
+[![NPM](https://img.shields.io/npm/v/smartcaht.svg)](https://www.npmjs.com/package/smartcaht) [![Build Status](https://github.com/zhangqiangzgz/smartchat/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/zhangqiangzgz/smartchat/actions/workflows/npm-publish.yml) [![MIT License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/zhangqiangzgz/smartchat/blob/main/license)
 
 ## Features
 - [Chat](#use-the-official-chatgpt-model) with [ChatGPT]() from the command-line
@@ -107,7 +107,7 @@ Usage:
 
 Commands:
   auth        Set a openai api key or access token
-  cancelAuth  remove openai api key or access token
+  deauth      remove openai api key or access token
   <prompt>    Ask ChatGPT a question
 
 For more info, run any command with the `--help` flag:
