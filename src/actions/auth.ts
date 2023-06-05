@@ -2,6 +2,7 @@ import config from '../config'
 import { input } from '@inquirer/prompts'
 import { existsSync, writeFileSync, readFileSync } from 'fs'
 import ini from 'ini'
+import stdout from '../utils/stdout'
 
 export default async function (offical: boolean) {
   try {
@@ -15,11 +16,11 @@ export default async function (offical: boolean) {
     }
 
     const answer: string = await input({
-      message: offical ? 'Please enter a openai api key' : 'Please enter a openai access token'
+      message: offical ? 'Please enter a OpenAI API key' : 'Please enter a OpenAI Access Token'
     })
   
     if (!answer) {
-      throw new Error(offical ? 'No openai api key privided' : 'No openai access token provided')
+      throw new Error(offical ? 'No OpenAI API key privided' : 'No OpenAI Access Token provided')
     }
 
     // save login info
@@ -41,6 +42,8 @@ export default async function (offical: boolean) {
       setConf(offical, answer)
     }
 
+    stdout.success('Authorization is successful, please use command "smartchat <prompt>" to start a conversation with chatgpt')
+    
     process.exit(0)
   } catch (error) {
     console.log(`error: ${error}`)
