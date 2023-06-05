@@ -7,10 +7,9 @@ Interact with ChatGPT from the command-line.
 
 [![NPM](https://img.shields.io/npm/v/smartcaht.svg)](https://www.npmjs.com/package/smartcaht) [![Build Status](https://github.com/zhangqiangzgz/smartchat/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/zhangqiangzgz/smartchat/actions/workflows/npm-publish.yml) [![MIT License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/zhangqiangzgz/smartchat/blob/main/license)
 
- ChatGPT CLI is an npm package that allows you to interact with ChatGPT, a powerful language model developed by OpenAI,
- directly from the command line. With this package, you can have conversational interactions with the model, generating
+ **smartchat** is an npm package that allows you to interact with ChatGPT, a powerful language model developed by OpenAI, directly from the command line. With this package, you can have conversational interactions with the model, generating
  responses to your queries and engaging in a chat-like experience.
- 
+
 ## Features
 - [Chat](#use-the-official-chatgpt-model) with [ChatGPT]() from the command-line
 - Support both the [official ChatGPT API](#about-the-official-chatgpt-api-and-the-unofficial-proxy-api) and the [unofficial proxy API](#about-the-official-chatgpt-api-and-the-unofficial-proxy-api) of [ChatGPT API](https://github.com/transitive-bullshit/chatgpt-api)
