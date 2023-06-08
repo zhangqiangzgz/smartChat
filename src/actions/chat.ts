@@ -25,6 +25,7 @@ type ChatOptions = {
   store: boolean
   proxy: string
   chat: boolean
+  stream: boolean
 }
 
 type ConversationType = {
