@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "tsup --watch --env.NODE_ENV development",
     "build": "tsup --env.NODE_ENV production",
-    "prepare": "husky install && npm run prepare:hooks",
-    "prepare:hooks": "npx husky set .husky/commit-msg \"npx commitlint --edit $1\"",
+    "preinstall": "husky install && npm run preinstall:hooks",
+    "preinstall:hooks": "npx husky set .husky/commit-msg \"npx commitlint --edit $1\"",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
   },
