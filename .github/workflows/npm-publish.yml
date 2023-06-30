@@ -37,6 +37,8 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
+      - name: Copy build output
+        run: cp -R build/* .
       - run: npm publish --provenance --access public --verbose
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
