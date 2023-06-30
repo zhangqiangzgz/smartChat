@@ -1,7 +1,7 @@
 {
   "name": "smartchat",
   "version": "1.0.0",
-  "description": "Command Line Interface for OpenAi ChatGPT",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "tsup --watch --env.NODE_ENV development",
