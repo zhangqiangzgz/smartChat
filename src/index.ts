@@ -41,9 +41,9 @@ async function main () {
     .option('-s, --store', 'Enables the local message cache', {
       default: true
     })
-    .option('--stream', 'Streams the response', {
-      default: true
-    })
+    // .option('--stream', 'Streams the response', {
+    //   default: true
+    // })
     .option('--chat', 'Continuous dialogue mode', {
       default: false
     })
