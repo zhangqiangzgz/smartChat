@@ -16,7 +16,7 @@ jobs:
       - name: use pnpm for installing and caching your dependencies # https://www.pnpm.cn/continuous-integration
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 8.5.1
       - name: install the specified version of the Node.js
         uses: actions/setup-node@v3
         with:
