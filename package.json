@@ -15,7 +15,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhangqiangzgz/smartChat.git"
+    "url": "git+https://github.com/zhangqiangzgz/smartchat.git"
   },
   "keywords": [
     "openai",
@@ -29,9 +29,9 @@
   "author": "zhangqiangzgz@hotmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zhangqiangzgz/smartChat/issues"
+    "url": "https://github.com/zhangqiangzgz/smartchat/issues"
   },
-  "homepage": "https://github.com/zhangqiangzgz/smartChat#readme",
+  "homepage": "https://github.com/zhangqiangzgz/smartchat#readme",
   "dependencies": {
     "@inquirer/prompts": "^1.2.3",
     "@types/gradient-string": "^1.1.2",
