@@ -37,10 +37,6 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-      - name: Switch to project root directory
-        run: cd ${{ github.workspace }}
-      - name: Copy build output
-        run: cp -R build/* .
-      - run: npm publish --provenance --access public --verbose
+      - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
